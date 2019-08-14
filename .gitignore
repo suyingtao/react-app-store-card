@@ -1,0 +1,6 @@
+.vscode
+lib
+node_modules
+.DS_Store
+.idea
+/es

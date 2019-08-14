@@ -1,0 +1,61 @@
+{
+  "name": "react-app-store-card",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env STAGE=development NODE_ENV=development BABEL_ENV=development webpack-dev-server --debug --config webpack.dev.js --progress --open",
+    "clean": "rimraf lib dist es",
+    "build": "npm run clean && npm run lint && npm run build:cjs && npm run build:es && npm run build:less",
+    "build:cjs": "cross-env BABEL_ENV=production NODE_ENV=production BUILD_TARGET=cjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=production NODE_ENV=production BUILD_TARGET=es babel src --out-dir es",
+    "lint-staged": "lint-staged",
+    "lint": "eslint index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "linters": {
+      "{src,lib}/**/*.{js,jsx}": [
+        "eslint"
+      ],
+      "src/**/*.less": [
+        "stylelint --syntax less"
+      ]
+    }
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "keywords": [
+    "react",
+    "appStore"
+  ],
+  "author": "suyingtao",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-eslint": "^10.0.2",
+    "cross-env": "^5.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "lint-staged": "^9.2.1",
+    "pre-commit": "^1.2.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "peerDependencies": {
+    "react": ">16.0.0",
+    "react-dom": ">16.0.0"
+  }
+}
